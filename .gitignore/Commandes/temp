@@ -1,0 +1,97 @@
+if(rreason === 'role') {
+
+        var output2 = await eco.FetchBalance(message.author.id)
+
+        if(output2.balance > 100000) {
+
+            if(!Argument) {
+                sendError(message, `Veuillez donner un nom à votre rôle !`)
+            }else{
+                
+                var profile = await eco.AddToBalance(message.author.id, -15000)
+
+                let member = message.author
+
+                message.guild.createRole({
+                    name: Argument
+
+                })
+    
+                var embedFacture = new Discord.RichEmbed()
+                .setTitle(":money_with_wings:  **Achat Role**")
+                .setThumbnail(message.author.displayAvatarURL)
+                .setDescription(`═════════════════`)
+                .addField(`Prix : **100.000** <:coin:574530477235634186>\nVotre argent : **${profile.newbalance}** <:coin:574530477235634186>`, `═════════════════`)
+                .addField(`Vous venez d'acheté un Role \n( *${Argument}* ) sur **Buickawz**`, `═════════════════\nAchat :`)
+                .setTimestamp()
+    
+                message.author.send(embedFacture)}
+   
+        }else{
+            sendError(message, `Vous n'avez pas assez d'argent ! Prix : **100000** <:coin:574530477235634186>`)
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+
+
+
+
+
+
+
+        let prefixes = JSON.parse(fs.readFileSync("./prefixes.json"))
+
+    if(!prefixes[message.guild.id]){
+        prefixes[message.guild.id] = {
+            prefixes: '!'
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+
+
+
+client.on('guildMemberAdd', member => {
+
+    if (member.guild.id !== serverStats.guildID) return;
+
+    client.channels.get(serverStats.totalUserID).setName(`MEMBRE : ${member.guild.memberCount}`)
+
+})
+
+client.on('guildMemberRemove', member => {
+
+    if (member.guild.id !== serverStats.guildID) return;
+
+    client.channels.get(serverStats.totalUserID).setName(`MEMBRE : ${member.guild.memberCount}`)
+    
+})
